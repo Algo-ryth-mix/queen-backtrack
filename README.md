@@ -58,5 +58,3 @@ constraints:  [(0, 0), (1, 1)]
 D=Queen
 ```
 could be produced by calling `python main.py 0 0 1 1`
-
-`7 6 0 3`
