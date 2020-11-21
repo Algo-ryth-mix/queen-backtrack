@@ -10,3 +10,5 @@ if __name__ == '__main__':
 
     if success:
         x.render(solution)
+
+    print("D=Queen")
