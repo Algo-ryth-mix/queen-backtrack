@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+from render.render_base import RenderBase
 from .common import Piece
 
 
@@ -8,7 +9,7 @@ class Solver:
     board_size = 8
 
     @staticmethod
-    def solve(constraints: List[Piece], rule) -> Tuple[bool, List[Piece]]:
+    def solve(constraints: List[Piece], rule, renderer: RenderBase = None) -> Tuple[bool, List[Piece]]:
         for i in range(Solver.board_size):
             for j in range(Solver.board_size):
 
@@ -25,7 +26,10 @@ class Solver:
                 if len(constraints) + 1 >= Solver.num_queens:
                     return True, constraints + [(i, j)]
 
-                (success, inner) = Solver.solve(constraints + [(i, j)], rule)
+                if renderer is not None:
+                    renderer.render(constraints + [(i, j)])
+
+                (success, inner) = Solver.solve(constraints + [(i, j)], rule,renderer)
                 if success:
                     return success, inner
 

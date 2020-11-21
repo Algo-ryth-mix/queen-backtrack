@@ -3,6 +3,7 @@ from typing import Tuple
 from game.rules import queen_rule
 from game.solver import Solver
 from render.console_render import ConsoleRender
+from render.data_render import DataRender
 import argparse
 
 if __name__ == '__main__':
@@ -18,15 +19,13 @@ if __name__ == '__main__':
         print("Constraints must be 2 integers, but your list of constraints was not even!")
         exit(1)
 
-    x = ConsoleRender()
-
     constraints = [(args.constraints[i], args.constraints[i + 1]) for i in range(0, len(args.constraints), 2)]
 
     print("constraints: ", constraints)
 
-    (success, solution) = Solver.solve(constraints, queen_rule)
+    (success, solution) = Solver.solve(constraints, queen_rule, DataRender())
 
     if success:
-        x.render(solution)
+        ConsoleRender().render(solution)
 
     print("D=Queen")
